@@ -62,12 +62,26 @@ function ajoutPotion(inventaire, potion) {
     console.log(`Potion "${potion.nom}" ajoutée à l'inventaire.`);
   }
 
-  inventaire.push(potion);
-  console.log(`Potion "${potion.nom}" ajoutée à l'inventaire.`);
+  inventaire.sort((a, b) => b.prix - a.prix);
 }
-ajoutPotion(inventaire, newPotion("Potion de Mana", 12, 5));
+
+function potionsEnStock(inventaire) {
+  return inventaire.filter((potion) => potion.stock > 0);
+}
+
 ajoutPotion(inventaire, newPotion("Potion de Vitesse", 18, 2));
+
+function potionsLowStock(inventaire) {
+  return inventaire.filter((potion) => potion.stock === 0);
+}
+
+ajoutPotion(inventaire, newPotion("Potion de Gana", 12, 5));
+ajoutPotion(inventaire, newPotion("Potion d'Invisibilité", 25, 1));
 
 console.log(newPotion("Potion de Mana"));
 console.log(newPotion("Potion de Bouclier", 15, 2));
 console.log(newPotion("Potion de Force", 20, 1));
+
+console.log(" Inventaire complet :", inventaire);
+console.log(" Potions en stock :", potionsEnStock(inventaire));
+console.log(" Potions stock épuisé:", potionsLowStock(inventaire));
