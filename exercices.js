@@ -24,13 +24,50 @@ console.log(
 
 function newPotion(idPotion, prix = 10, stock = 1) {
   return {
-    id: idPotion,
+    nom: idPotion,
     prix: prix,
     stock: stock,
   };
 }
+
+const inventaire = [
+  {
+    nom: "Potion de Mana",
+    prix: 10,
+    stock: 1,
+  },
+  {
+    nom: "Potion de Bouclier",
+    prix: 15,
+    stock: 2,
+  },
+  {
+    nom: "Potion de Force",
+    prix: 20,
+    stock: 3,
+  },
+];
+
+function ajoutPotion(inventaire, potion) {
+  let existante = inventaire.find((p) => p.nom === potion.nom);
+
+  if (existante) {
+    existante.prix = potion.prix;
+    existante.stock += potion.stock;
+    console.log(
+      `Potion "${potion.nom}" mise à jour : Prix = ${potion.prix}, Stock = ${existante.stock}.`
+    );
+  } else {
+    inventaire.push(potion);
+    console.log(`Potion "${potion.nom}" ajoutée à l'inventaire.`);
+  }
+
+  inventaire.push(potion);
+  console.log(`Potion "${potion.nom}" ajoutée à l'inventaire.`);
+}
+ajoutPotion(inventaire, newPotion("Potion de Mana", 12, 5));
+ajoutPotion(inventaire, newPotion("Potion de Vitesse", 18, 2));
+
 console.log(newPotion("Potion de Mana"));
 console.log(newPotion("Potion de Bouclier", 15, 2));
 console.log(newPotion("Potion de Force", 20, 1));
-
-function potionSupplementaire(idPotion, prix = 10, sotkc = 1);
