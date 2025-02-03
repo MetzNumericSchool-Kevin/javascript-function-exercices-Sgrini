@@ -85,3 +85,28 @@ console.log(newPotion("Potion de Force", 20, 1));
 console.log(" Inventaire complet :", inventaire);
 console.log(" Potions en stock :", potionsEnStock(inventaire));
 console.log(" Potions stock épuisé:", potionsLowStock(inventaire));
+
+const manuel_de_fabrication = {
+  potion_soin: {
+    ingredients: ["eau_de_source", "ecaille_de_dragon", "poudre_de_diamant"],
+    temps_de_fabrication: 3, // exprimé en secondes
+  },
+};
+
+const composition = ["eau_de_source", "ecaille_de_dragon", "poudre_de_diamant"];
+
+function ajoutPotion2(ingredients, idPotion, tableau) {
+  if (JSON.stringify(ingredients) == JSON.stringify(tableau)) {
+    return {
+      nom: idPotion,
+      prix: 20,
+      stock: 3,
+    };
+  } else {
+    return new Error("Il manque des ingrédients à cette potion.");
+  }
+}
+
+const inventaire2 = ["eau_de_source", "ecaille_de_dragon", "poudre_de_diamant"];
+ajoutPotion2(inventaire2, "Potion de soin", composition);
+console.log(ajoutPotion2(inventaire2, "Potion de soin", composition));
